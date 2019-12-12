@@ -122,7 +122,14 @@ export default {
       time.setFullYear(this.year, this.month, 0)
       const time1 = new Date()
       time1.setFullYear(this.year, this.month - 1, 1)
-      for (let i = 1; i < time1.getDay(); i++) {
+      let weekNum
+      if (time1.getDay() < 1) {
+        // 周日是0
+        weekNum = 7
+      } else {
+        weekNum = time1.getDay()
+      }
+      for (let i = 1; i < weekNum; i++) {
         this.days.push({gregorian: '', lunar: ''})
       }
       for (let i = 1; i <= time.getDate(); i++) {
